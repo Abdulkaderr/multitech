@@ -43,6 +43,7 @@
         <!--@endif-->
         
              
+        @if(!request()->filled('invoiceresource_id') && !request()->filled('invoiceresource_type'))
         <!--YEAR SELECTOR-->
         <form method="get" action="{{ urlResource('/invoices') }}" class="list-actions-button form-group mb-0">
             @php $selectedYear = request('filter_year') ?? now()->year; @endphp
@@ -55,6 +56,7 @@
                 @endfor
             </select>
         </form>
+        @endif
 
 
         <!--ADD NEW ITEM-->

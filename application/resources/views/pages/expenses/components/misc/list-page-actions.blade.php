@@ -34,6 +34,7 @@
         
      
         
+        @if(request('source') != 'ext' && !request()->filled('expenseresource_id') && !request()->filled('expenseresource_type') && !request()->filled('filter_expense_projectid'))
         <!--YEAR SELECTOR-->
         <form method="get" action="{{ urlResource('/expenses') }}" class="list-actions-button form-group mb-0">
             @php $selectedYear = request('filter_year') ?? now()->year; @endphp
@@ -46,6 +47,7 @@
                 @endfor
             </select>
         </form>
+        @endif
 
 
 
