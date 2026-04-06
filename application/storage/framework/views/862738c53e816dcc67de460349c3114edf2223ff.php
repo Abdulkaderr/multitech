@@ -1,0 +1,2 @@
+<?php echo $__env->make('pages.reports.estimates.category.filter', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('pages.reports.estimates.category.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/u446360577/domains/multitech-mt.nl/public_html/my/application/resources/views/pages/reports/estimates/category/wrapper.blade.php ENDPATH**/ ?>

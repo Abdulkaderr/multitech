@@ -1,0 +1,1 @@
+<?php echo cleanEmail($content); ?><?php /**PATH /home/u446360577/domains/multitech-mt.nl/public_html/my/application/resources/views/pages/emails/template.blade.php ENDPATH**/ ?>
