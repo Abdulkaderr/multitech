@@ -241,7 +241,7 @@ class Invoices extends Controller {
 
          //default
         // do not force a year filter when the invoice list is being loaded for a specific project/client
-        if (!request()->filled('filter_year') && !request()->filled('invoiceresource_id') && !request()->filled('invoiceresource_type')) {
+        if (!request()->filled('filter_year') && !request()->filled('invoiceresource_id') && !request()->filled('invoiceresource_type') && request('action') !== 'search') {
             request()->merge([
                 'filter_year' => now()->year
             ]);
@@ -1673,13 +1673,6 @@ class Invoices extends Controller {
      * @return array
      */
     private function statsWidget($data = array()) {
-
-    //start abdul
-
-        request()->merge([
-    'filter_year' => now()->year
-        ]);
-        //end abdul
         //stats
         $count_all = $this->invoicerepo->search('', ['stats' => 'count-all']);
         $count_due = $this->invoicerepo->search('', ['stats' => 'count-due']);

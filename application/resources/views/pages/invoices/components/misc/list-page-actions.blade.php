@@ -44,17 +44,26 @@
         
              
         <!--YEAR SELECTOR-->
-        <!--<form method="get" action="{{ urlResource('/expenses') }}" class="list-actions-button form-group mb-0">-->
-        <!--    @php $selectedYear = request('filter_year') ?? now()->year; @endphp-->
-        <!--    <label for="expense_year_selector" class="d-none">{{ cleanLang(__('lang.year')) }}</label>-->
-        <!--    <select name="filter_year" id="expense_year_selector" class="form-control form-control-sm" autocomplete="off" onchange="this.form.submit();">-->
-        <!--        <option value="">{{ cleanLang(__('lang.year')) }}</option>-->
-        <!--        <option value="all" @if($selectedYear == 'all') selected @endif>{{ cleanLang(__('lang.all')) }}</option>-->
-        <!--        @for($year = now()->year; $year >= now()->year - 7; $year--)-->
-        <!--        <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>-->
-        <!--        @endfor-->
-        <!--    </select>-->
-        <!--</form>-->
+        <form method="get" action="{{ urlResource('/invoices') }}" class="list-actions-button form-group mb-0">
+            @php $selectedYear = request('filter_year') ?? now()->year; @endphp
+            @foreach(request()->except(['filter_year', 'page']) as $name => $value)
+                @if(is_array($value))
+                    @foreach($value as $item)
+                        <input type="hidden" name="{{ $name }}[]" value="{{ $item }}">
+                    @endforeach
+                @elseif($value !== null && $value !== '')
+                    <input type="hidden" name="{{ $name }}" value="{{ $value }}">
+                @endif
+            @endforeach
+            <label for="invoice_year_selector" class="d-none">{{ cleanLang(__('lang.year')) }}</label>
+            <select name="filter_year" id="invoice_year_selector" class="form-control form-control-sm" autocomplete="off" onchange="this.form.submit();">
+                <option value="">{{ cleanLang(__('lang.year')) }}</option>
+                <option value="all" @if($selectedYear == 'all') selected @endif>{{ cleanLang(__('lang.all')) }}</option>
+                @for($year = now()->year; $year >= now()->year - 7; $year--)
+                <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                @endfor
+            </select>
+        </form>
 
 
         <!--ADD NEW ITEM-->

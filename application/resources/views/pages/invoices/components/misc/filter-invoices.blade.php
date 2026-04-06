@@ -165,6 +165,29 @@
                 </div>
 
 
+                <!--year-->
+                <div class="filter-block">
+                    <div class="title">
+                        {{ cleanLang(__('lang.year')) }}
+                    </div>
+                    <div class="fields">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select name="filter_year" id="filter_year"
+                                    class="form-control form-control-sm select2-basic select2-preselected"
+                                    data-preselected="{{ request('filter_year') ?? now()->year }}"
+                                    data-width="resolve">
+                                    <option value="">{{ cleanLang(__('lang.select')) }}</option>
+                                    @for($year = now()->year; $year >= now()->year - 7; $year--)
+                                    <option value="{{ $year }}" {{ runtimePreselected(request('filter_year'), $year) }}>{{ $year }}</option>
+                                    @endfor
+                                    <option value="all" {{ runtimePreselected(request('filter_year'), 'all') }}>{{ cleanLang(__('lang.all')) }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!--status-->
                 <div class="filter-block">
                     <div class="title">
