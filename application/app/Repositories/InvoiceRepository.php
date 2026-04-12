@@ -144,7 +144,7 @@ class InvoiceRepository {
         
         //abdul start
         //filter: invoice by year
-        if (request()->filled('filter_year')) {
+        if (request()->filled('filter_year') && request('filter_year') != 'all' && is_numeric(request('filter_year'))) {
             $invoices->whereYear('bill_date', request('filter_year'));
         }
         
